@@ -4,7 +4,7 @@ import { useCounterSelector } from "../../store";
 export const Title: React.FC = memo(() => {
   //   const title = useCounterStore(useShallow((state) => state.title));
 
-  const items = useCounterSelector("title", "posts", "increment");
+  const items = useCounterSelector("title", "count", "increment");
   // This option is valid too
   //   const { title, posts, count, increment } = useTitlePostsSelector(
   //     "title",
@@ -15,12 +15,11 @@ export const Title: React.FC = memo(() => {
   // Or unother option for import all state
   //   const state = useCounterSelector( );
 
-  console.log("Title", items);
-  console.log("Title", items?.posts);
+  console.log("Items", items);
 
   return (
     <h1>
-      {items.title} -{" "}
+      {items.title} : {items?.count} -{" "}
       <button
         className="btn1"
         onClick={() => {
@@ -28,8 +27,7 @@ export const Title: React.FC = memo(() => {
         }}
       >
         Increment by 10
-      </button>{" "}
-      :{/* {items?.count} */}
+      </button>
     </h1>
   );
 });
