@@ -50,6 +50,7 @@ export const useCounterStore = create<CounterState>()(
       name: "counter-storage",
       //* Storage in localStorage for default, also without include the parameter.
       storage: createJSONStorage(() => sessionStorage),
+      //* For default 'persist' saves all object and arrays
       partialize: (state) => ({ count: state.count, title: state.title }),
     }
   )
