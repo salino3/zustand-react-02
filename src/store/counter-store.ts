@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { useShallow } from "zustand/react/shallow";
-import { CounterState, initialState, Post } from "./interface";
-import { useCallback } from "react";
+import { CounterState, initialState } from "./interface";
 
 export const useCounterStore = create<CounterState>((set, get) => ({
   ...initialState,
@@ -36,9 +35,15 @@ export const useCounterStore = create<CounterState>((set, get) => ({
 }));
 
 // Selector for avoid rerender
-export const useCounterSelector = <T extends keyof CounterState>(
+export function useCounterSelector<T extends keyof CounterState>(
   ...keys: T[]
-) => {
+):
+  | { [K in keyof CounterState]: CounterState[K] }
+  | { [K in T]?: CounterState[K] } {
+  if (keys.length === 0) {
+    return useCounterStore(useShallow((state) => state));
+  }
+
   const selectors: { [K in T]?: CounterState[K] } = {};
 
   keys.forEach((key) => {
@@ -46,4 +51,4 @@ export const useCounterSelector = <T extends keyof CounterState>(
   });
 
   return selectors;
-};
+}

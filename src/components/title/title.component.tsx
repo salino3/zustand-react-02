@@ -12,6 +12,9 @@ export const Title: React.FC = memo(() => {
   //     "count",
   //     "increment"
   //   );
+  // Or unother option for import all state
+  //   const state = useCounterSelector( );
+
   console.log("Title", items);
   console.log("Title", items?.posts);
 
@@ -26,7 +29,7 @@ export const Title: React.FC = memo(() => {
       >
         Increment by 10
       </button>{" "}
-      :
+      :{/* {items?.count} */}
     </h1>
   );
 });
