@@ -2,6 +2,8 @@ import { useEffect } from "react";
 // import { shallow } from "zustand/shallow";
 import { useShallow } from "zustand/react/shallow";
 import { CounterState, useCounterStore } from "./store";
+import { Buttons } from "./components";
+import "./App.css";
 
 function App() {
   //* Old code zustand
@@ -20,7 +22,7 @@ function App() {
     }))
   );
 
-  const { increment, getPosts, clearStore, multiply } = useCounterStore();
+  const { getPosts } = useCounterStore();
 
   useEffect(() => {
     getPosts();
@@ -31,28 +33,7 @@ function App() {
       <h1>
         {title}: {count}
       </h1>
-      <button
-        onClick={() => {
-          increment(10);
-        }}
-      >
-        Increment by 10
-      </button>
-      <button
-        onClick={() => {
-          clearStore();
-        }}
-      >
-        Clear
-      </button>
-
-      <button
-        onClick={() => {
-          multiply(2);
-        }}
-      >
-        Multuply by 2
-      </button>
+      <Buttons />
       <hr />
       <div className="container">{JSON.stringify(posts)}</div>
     </div>

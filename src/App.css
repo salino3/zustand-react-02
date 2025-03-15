@@ -1,0 +1,11 @@
+.rootApp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.rootApp hr {
+  width: 100%;
+}
