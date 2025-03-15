@@ -3,7 +3,8 @@ import { useCounterStore } from "../../store";
 import "./buttons.styles.css";
 
 export const Buttons: React.FC = () => {
-  const { increment, getPosts, clearStore, multiply } = useCounterStore();
+  const { increment, getPosts, clearStore, multiply, updatePostTitle } =
+    useCounterStore();
   console.log("Buttons");
   return (
     <div className="containerButtons">
@@ -39,6 +40,14 @@ export const Buttons: React.FC = () => {
         }}
       >
         Call Posts
+      </button>
+      <button
+        className="btn5"
+        onClick={() => {
+          updatePostTitle(1, "New Title!!");
+        }}
+      >
+        New Title 1º Post
       </button>
     </div>
   );

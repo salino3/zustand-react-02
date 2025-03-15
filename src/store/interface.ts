@@ -25,6 +25,7 @@ export interface CounterState {
   getPosts: () => Promise<void>;
   clearStore: () => void;
   multiply: (value: number) => void;
+  updatePostTitle: (postId: number, newTitle: string) => void;
 }
 
 //
