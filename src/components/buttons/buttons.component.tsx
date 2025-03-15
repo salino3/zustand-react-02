@@ -1,3 +1,4 @@
+import React from "react";
 import { useCounterStore } from "../../store";
 import "./buttons.styles.css";
 

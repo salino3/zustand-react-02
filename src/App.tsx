@@ -2,7 +2,7 @@ import { useEffect } from "react";
 // import { shallow } from "zustand/shallow";
 import { useShallow } from "zustand/react/shallow";
 import { CounterState, useCounterStore } from "./store";
-import { Buttons } from "./components";
+import { Buttons, Posts, Title } from "./components";
 import "./App.css";
 
 function App() {
@@ -14,10 +14,8 @@ function App() {
 
   // const count = useCounterStore((state) => state?.count);
   // const title = useCounterStore((state) => state?.title);
-  const { count, title, posts } = useCounterStore(
+  const { posts } = useCounterStore(
     useShallow((state: CounterState) => ({
-      count: state.count,
-      title: state.title,
       posts: state.posts,
     }))
   );
@@ -30,12 +28,10 @@ function App() {
 
   return (
     <div className="rootApp">
-      <h1>
-        {title}: {count}
-      </h1>
+      <Title />
       <Buttons />
       <hr />
-      <div className="container">{JSON.stringify(posts)}</div>
+      <Posts posts={posts} />
     </div>
   );
 }
