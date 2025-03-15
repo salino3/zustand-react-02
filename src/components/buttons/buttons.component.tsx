@@ -4,7 +4,7 @@ import "./buttons.styles.css";
 
 export const Buttons: React.FC = () => {
   const { increment, getPosts, clearStore, multiply } = useCounterStore();
-
+  console.log("Buttons");
   return (
     <div className="containerButtons">
       <button

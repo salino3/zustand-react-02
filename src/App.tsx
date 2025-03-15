@@ -26,6 +26,8 @@ function App() {
     getPosts();
   }, []);
 
+  console.log("App component");
+
   return (
     <div className="rootApp">
       <Title />
