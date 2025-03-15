@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from "react";
+// import { shallow } from "zustand/shallow";
+import { useShallow } from "zustand/react/shallow";
+import { CounterState, useCounterStore } from "./store";
 
 function App() {
-  const [count, setCount] = useState(0)
+  //* Old code zustand
+  // const { count, title } = useCounterStore(
+  //   (state: CounterState) => ({ count: state.count, title: state.title }),
+  //   shallow
+  // );
+
+  // const count = useCounterStore((state) => state?.count);
+  // const title = useCounterStore((state) => state?.title);
+  const { count, title, posts } = useCounterStore(
+    useShallow((state: CounterState) => ({
+      count: state.count,
+      title: state.title,
+      posts: state.posts,
+    }))
+  );
+
+  const { increment, getPosts, clearStore, multiply } = useCounterStore();
+
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="rootApp">
+      <h1>
+        {title}: {count}
+      </h1>
+      <button
+        onClick={() => {
+          increment(10);
+        }}
+      >
+        Increment by 10
+      </button>
+      <button
+        onClick={() => {
+          clearStore();
+        }}
+      >
+        Clear
+      </button>
+
+      <button
+        onClick={() => {
+          multiply(2);
+        }}
+      >
+        Multuply by 2
+      </button>
+      <hr />
+      <div className="container">{JSON.stringify(posts)}</div>
+    </div>
+  );
 }
 
-export default App
+export default App;
