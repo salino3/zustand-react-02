@@ -15,7 +15,7 @@ export const Title: React.FC = memo(() => {
   // Or unother option for import all state
   //   const state = useCounterSelector( );
 
-  console.log("Items", items);
+  console.log("Items:", items);
 
   return (
     <h1>
